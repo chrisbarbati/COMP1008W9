@@ -50,7 +50,7 @@ public class DBUtility {
         return courses;
     }
 
-    private static ArrayList<Grade> getGradesFromDB(int studentNumber){
+    public static ArrayList<Grade> getGradesFromDB(int studentNumber){
         ArrayList<Grade> grades = new ArrayList<>();
 
         //Connect to the database

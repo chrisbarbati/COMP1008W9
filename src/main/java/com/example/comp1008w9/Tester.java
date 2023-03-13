@@ -7,5 +7,9 @@ public class Tester {
         ArrayList<Course> courses = DBUtility.getCoursesFromDB();
 
         System.out.println(courses);
+
+        ArrayList<Grade> grades = DBUtility.getGradesFromDB(100000001);
+
+        System.out.println(grades);
     }
 }
