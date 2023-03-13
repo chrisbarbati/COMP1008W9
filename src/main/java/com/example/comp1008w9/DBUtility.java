@@ -49,4 +49,32 @@ public class DBUtility {
 
         return courses;
     }
+
+    private static ArrayList<Grade> getGradesFromDB(int studentNumber){
+        ArrayList<Grade> grades = new ArrayList<>();
+
+        //Connect to the database
+        //try() with round brackets indicate a try with resources block. Resources will automatically be closed if they
+        //are opened inside the  block
+        try(
+                Connection conn = DriverManager.getConnection(connectURL, user, password);
+                Statement statement = conn.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM grades WHERE studentNum = " + studentNumber);
+        ){
+            while(resultSet.next()){
+                int crn = resultSet.getInt("crn");
+                int grade = resultSet.getInt("Grade");
+
+
+                grades.add(
+                        new Grade(studentNumber, crn, grade)
+                );
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return grades;
+    }
 }
